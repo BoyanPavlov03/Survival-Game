@@ -7,6 +7,6 @@ public class Main {
     public static void main(String[] args) {
         TreeMap<Coordinates, Combination> map;
 
-        new Display("Game", 1000, 700);
+        new Display("Survival-Game", 1000, 700);
     }
 }
