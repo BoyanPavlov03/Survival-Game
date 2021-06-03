@@ -1,7 +1,6 @@
 package com.elsys;
 
 import com.elsys.object.Player;
-
 import javax.swing.*;
 
 public class Display {
@@ -19,7 +18,7 @@ public class Display {
         frame.addKeyListener(player);
     }
 
-    void createDisplay(){
+    void createDisplay() {
         frame = new JFrame(title);
         frame.setSize((int)width, (int)height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
