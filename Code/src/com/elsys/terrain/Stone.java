@@ -4,15 +4,15 @@ import com.elsys.Coordinates;
 
 import java.awt.*;
 
-public class Grass implements Terrain{
+public class Stone implements Terrain {
     @Override
     public String type() {
-        return "grass";
+        return null;
     }
 
     @Override
     public void paint(Graphics2D g, Coordinates coordinates) {
-        g.setColor(Color.green);
+        g.setColor(Color.gray);
         g.fillRect(coordinates.get_x() * 25, coordinates.get_y() * 25, 25, 25);
     }
 }

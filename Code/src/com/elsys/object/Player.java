@@ -1,13 +1,12 @@
 package com.elsys.object;
 
 import com.elsys.Coordinates;
-import com.elsys.Display;
 import com.elsys.Main;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.image.BufferedImage;
+// import java.awt.image.BufferedImage;
 
 public class Player implements GameObject, KeyListener{
     int curr_hp;
@@ -16,8 +15,8 @@ public class Player implements GameObject, KeyListener{
     int max_hunger;
     int curr_thirst;
     int max_thirst;
-    Coordinates coords;
-    BufferedImage img;
+    Coordinates coordinates;
+    // BufferedImage img;
 
     public Player(int max_hp, int max_hunger, int max_thirst, int x, int y) {
         this.curr_hp = max_hp;
@@ -26,46 +25,34 @@ public class Player implements GameObject, KeyListener{
         this.max_hunger = max_hunger;
         this.curr_thirst = max_thirst;
         this.max_thirst = max_thirst;
-        this.coords = new Coordinates(x, y);
+        this.coordinates = new Coordinates(x, y);
     }
 
-    private void moveDown(int y) {
-        if(y + coords.get_y() >= Main.display.getHeight()){
-            return;
-        }
-        else{
-            this.coords.set_y(this.coords.get_y() + y);
+    private void moveDown() {
+        if((1 + coordinates.get_y()) * 25 < Main.display.getHeight()){
+            this.coordinates.set_y(this.coordinates.get_y() + 1);
         }
     }
-    private void moveLeft(int x){
-        if(coords.get_x() - x < 0){
-            return;
-        }
-        else{
-            this.coords.set_x(this.coords.get_x() - x);
+    private void moveLeft(){
+        if(coordinates.get_x() - 1 >= 0){
+            this.coordinates.set_x(this.coordinates.get_x() - 1);
         }
     }
-    private void moveRight(int x){
-        if(x + coords.get_x() >= Main.display.getWidth()){
-            return;
-        }
-        else{
-            this.coords.set_x(this.coords.get_x() + x);
+    private void moveRight(){
+        if((1 + coordinates.get_x()) * 25 < Main.display.getWidth()){
+            this.coordinates.set_x(this.coordinates.get_x() + 1);
         }
     }
-    private void moveUp(int y){
-        if(coords.get_y() - y < 0){
-            return;
-        }
-        else{
-            this.coords.set_y(this.coords.get_y() - y);
+    private void moveUp(){
+        if(coordinates.get_y() - 1 >= 0){
+            this.coordinates.set_y(this.coordinates.get_y() - 1);
         }
     }
 
     @Override
     public void paint(Graphics2D g) {
         g.setColor(Color.red);
-        g.fillRect(coords.get_x(), coords.get_y(), 25, 25);
+        g.fillRect(coordinates.get_x() * 25, coordinates.get_y() * 25,  25, 25);
     }
 
     @Override
@@ -79,18 +66,10 @@ public class Player implements GameObject, KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
-            case 37 -> {
-                moveLeft(25);
-            }
-            case 38 -> {
-                moveUp(25);
-            }
-            case 39 -> {
-                moveRight(25);
-            }
-            case 40 -> {
-                moveDown(25);
-            }
+            case 37 -> moveLeft();
+            case 38 -> moveUp();
+            case 39 -> moveRight();
+            case 40 -> moveDown();
             default -> System.out.println(e.getKeyCode());
         }
     }

@@ -1,6 +1,6 @@
 package com.elsys;
 
-public class Coordinates {
+public class Coordinates implements Comparable<Coordinates> {
     int x;
     int y;
 
@@ -28,5 +28,13 @@ public class Coordinates {
                 "x=" + x +
                 ", y=" + y +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Coordinates o) {
+        if (this.x < o.x) return -1;
+        if (this.x > o.x) return +1;
+
+        return Integer.compare(this.y, o.y);
     }
 }

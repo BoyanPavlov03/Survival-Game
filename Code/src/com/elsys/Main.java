@@ -12,13 +12,10 @@ public class Main {
     public static Display display;
 
     public static void main(String[] args) {
-        TreeMap<Coordinates, Combination> map;
+        Player player = new Player(100,100, 100, 12, 12);
 
-        Player player = new Player(100,100, 100, 100, 100);
-
-        display = new Display("Survival-Game", 1000, 700, player);
+        display = new Display("Survival-Game", 625, 625, player);
         display.addObject(player);
-
 
         Timer timer = new Timer();
         timer.schedule(new TimerTask(){
@@ -27,6 +24,6 @@ public class Main {
             public void run() {
                 display.getCanvas().repaint();
             }
-        }, 0,33);
+        }, 0,100);
     }
 }
