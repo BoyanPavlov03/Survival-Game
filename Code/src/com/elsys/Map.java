@@ -1,13 +1,10 @@
 package com.elsys;
 
-import com.elsys.object.EmptyObject;
-import com.elsys.object.GameObject;
-import com.elsys.object.Player;
-import com.elsys.object.Tree;
-import com.elsys.terrain.Grass;
-import com.elsys.terrain.Stone;
+import com.elsys.object.*;
+import com.elsys.terrain.GrassTerrain;
+import com.elsys.terrain.StoneTerrain;
 import com.elsys.terrain.Terrain;
-import com.elsys.terrain.Water;
+import com.elsys.terrain.WaterTerrain;
 
 import javax.swing.*;
 import java.util.Random;
@@ -23,18 +20,19 @@ public class Map extends JPanel {
     public Map(Player player) {
         generate_map();
         generate_random_tree();
+        generate_random_stone_bricks();
         addPlayer(player);
         this.player = player;
     }
 
     void addPlayer(Player player){
-        map.replace(player.getCoordinates(), new Combination(player, new Grass()));
+        map.replace(player.getCoordinates(), new Combination(player, new GrassTerrain()));
     }
 
     void generate_map() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < height; j++) {
-                map.put(new Coordinates(i, j), new Combination(new EmptyObject(), new Water()));
+                map.put(new Coordinates(i, j), new Combination(new EmptyObject(), new WaterTerrain()));
             }
         }
         for (int i = 3; i < width; i++) {
@@ -95,14 +93,11 @@ public class Map extends JPanel {
 
     boolean intersectionHandler(Coordinates coordinates) {
         GameObject object = map.get(coordinates).getObject();
-        if(object instanceof EmptyObject){
-            return true;
-        }
-        return false;
+        return object instanceof EmptyObject;
     }
 
     private Terrain generate_random_terrain() {
-        return new Random().nextInt(2) == 1 ? new Grass() : new Stone();
+        return new Random().nextInt(2) == 1 ? new GrassTerrain() : new StoneTerrain();
     }
 
     public Player getPlayer(){
@@ -113,9 +108,22 @@ public class Map extends JPanel {
         for (int i = 3; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 Coordinates coordinates = new Coordinates(i, j);
-                if (map.get(coordinates).terrain instanceof Grass){
+                if (map.get(coordinates).terrain instanceof GrassTerrain){
                     if (new Random().nextInt(10) == 1){
-                        map.put(coordinates, new Combination(new Tree(),new Grass()));
+                        map.put(coordinates, new Combination(new Tree(),new GrassTerrain()));
+                    }
+                }
+            }
+        }
+    }
+
+    private void generate_random_stone_bricks() {
+        for (int i = 3; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                Coordinates coordinates = new Coordinates(i, j);
+                if (map.get(coordinates).terrain instanceof StoneTerrain){
+                    if (new Random().nextInt(10) == 1){
+                        map.put(coordinates, new Combination(new StoneBrick(),new StoneTerrain()));
                     }
                 }
             }

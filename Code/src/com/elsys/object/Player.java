@@ -5,6 +5,7 @@ import com.elsys.LoadImages;
 import com.elsys.Main;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Player implements GameObject{
     int curr_hp;
@@ -14,6 +15,8 @@ public class Player implements GameObject{
     int curr_thirst;
     int max_thirst;
     Coordinates coordinates;
+
+    Inventory inventory;
 
     int move_tracker = 0;
 
@@ -25,11 +28,12 @@ public class Player implements GameObject{
         this.curr_thirst = max_thirst;
         this.max_thirst = max_thirst;
         this.coordinates = new Coordinates(x, y);
+        this.inventory = new Inventory(20);
     }
 
     @Override
-    public void paint(Graphics2D g, Coordinates coords) {
-        g.drawImage(LoadImages.imgPlayer,coordinates.get_x() * Main.pixel_size, coordinates.get_y() * Main.pixel_size, null, null);
+    public void paint(Graphics2D g, Coordinates coordinates) {
+        g.drawImage(LoadImages.imgPlayer, this.coordinates.get_x() * Main.pixel_size, this.coordinates.get_y() * Main.pixel_size, null, null);
     }
 
     @Override

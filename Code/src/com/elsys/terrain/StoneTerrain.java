@@ -6,7 +6,7 @@ import com.elsys.Main;
 
 import java.awt.*;
 
-public class Stone implements Terrain {
+public class StoneTerrain implements Terrain {
     @Override
     public String type() {
         return "stone";
