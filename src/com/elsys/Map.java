@@ -21,6 +21,7 @@ public class Map extends JPanel {
         generate_map();
         generate_random_tree();
         generate_random_stone_bricks();
+        generate_random_sticks();
         addPlayer(player);
         this.player = player;
     }
@@ -93,11 +94,15 @@ public class Map extends JPanel {
 
     boolean intersectionHandler(Coordinates coordinates) {
         GameObject object = map.get(coordinates).getObject();
+        if (object instanceof Item) {
+            player.inventory.add_item((Item) object);
+            return true;
+        }
         return object instanceof EmptyObject;
     }
 
     private Terrain generate_random_terrain() {
-        return new Random().nextInt(2) == 1 ? new GrassTerrain() : new StoneTerrain();
+        return new Random().nextInt(3) == 1 ? new StoneTerrain() : new GrassTerrain();
     }
 
     public Player getPlayer(){
@@ -108,7 +113,7 @@ public class Map extends JPanel {
         for (int i = 3; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 Coordinates coordinates = new Coordinates(i, j);
-                if (map.get(coordinates).terrain instanceof GrassTerrain){
+                if (map.get(coordinates).getTerrain() instanceof GrassTerrain){
                     if (new Random().nextInt(10) == 1){
                         map.put(coordinates, new Combination(new Tree(),new GrassTerrain()));
                     }
@@ -121,9 +126,22 @@ public class Map extends JPanel {
         for (int i = 3; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 Coordinates coordinates = new Coordinates(i, j);
-                if (map.get(coordinates).terrain instanceof StoneTerrain){
-                    if (new Random().nextInt(10) == 1){
+                if (map.get(coordinates).getTerrain() instanceof StoneTerrain){
+                    if (new Random().nextInt(15) == 1){
                         map.put(coordinates, new Combination(new StoneBrick(),new StoneTerrain()));
+                    }
+                }
+            }
+        }
+    }
+
+    private void generate_random_sticks() {
+        for (int i = 3; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                Coordinates coordinates = new Coordinates(i, j);
+                if (map.get(coordinates).getTerrain() instanceof GrassTerrain){
+                    if (new Random().nextInt(15) == 1 && !(map.get(coordinates).getObject() instanceof Tree)){
+                        map.put(coordinates, new Combination(new Stick(),new GrassTerrain()));
                     }
                 }
             }

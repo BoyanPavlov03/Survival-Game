@@ -5,7 +5,6 @@ import com.elsys.LoadImages;
 import com.elsys.Main;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class Player implements GameObject{
     int curr_hp;
@@ -16,7 +15,7 @@ public class Player implements GameObject{
     int max_thirst;
     Coordinates coordinates;
 
-    Inventory inventory;
+    public Inventory inventory;
 
     int move_tracker = 0;
 

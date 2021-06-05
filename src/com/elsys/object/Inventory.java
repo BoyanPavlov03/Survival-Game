@@ -29,10 +29,19 @@ public class Inventory {
             for (InventoryItem inventoryItem : inventory) {
                 if (inventoryItem.item.type().equals(new_item.type()) && inventoryItem.count < max_stack_size) {
                     inventoryItem.count++;
+                    print_inventory();
                     return;
                 }
             }
         }
         inventory.add(new InventoryItem(new_item, 1));
+        print_inventory();
+    }
+
+    public void print_inventory() {
+        for (InventoryItem inventoryItem : inventory) {
+            System.out.println(inventoryItem.item.type() + ": " + inventoryItem.count);
+        }
+        System.out.println();
     }
 }

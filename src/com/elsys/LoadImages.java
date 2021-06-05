@@ -13,6 +13,7 @@ public class LoadImages {
     public static Image imgTree;
 
     public static Image imgStoneBrick;
+    public static Image imgStick;
 
     LoadImages() {
         LoadImages.initGrass();
@@ -21,7 +22,8 @@ public class LoadImages {
         LoadImages.initPlayer();
         LoadImages.initTree();
 
-         LoadImages.initStoneBrick();
+        LoadImages.initStoneBrick();
+        LoadImages.initStick();
     }
 
     public static void initGrass(){
@@ -73,6 +75,15 @@ public class LoadImages {
         try {
             imgStoneBrick = ImageIO.read(new File("./src/img/stone-brick.png"));
             imgStoneBrick = imgStoneBrick.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void initStick(){
+        try {
+            imgStick = ImageIO.read(new File("./src/img/stick.png"));
+            imgStick = imgStick.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
         } catch (IOException e) {
             e.printStackTrace();
         }
