@@ -1,6 +1,7 @@
 package com.elsys.object;
 
 import com.elsys.Coordinates;
+import com.elsys.LoadImages;
 import com.elsys.Main;
 
 import java.awt.*;
@@ -16,7 +17,8 @@ public class Player implements GameObject, KeyListener{
     int curr_thirst;
     int max_thirst;
     Coordinates coordinates;
-    // BufferedImage img;
+
+    int move_tracker = 0;
 
     public Player(int max_hp, int max_hunger, int max_thirst, int x, int y) {
         this.curr_hp = max_hp;
@@ -50,9 +52,8 @@ public class Player implements GameObject, KeyListener{
     }
 
     @Override
-    public void paint(Graphics2D g) {
-        g.setColor(Color.red);
-        g.fillRect(coordinates.get_x() * 25, coordinates.get_y() * 25,  25, 25);
+    public void paint(Graphics2D g, Coordinates coords) {
+        g.drawImage(LoadImages.imgPlayer,coordinates.get_x() * 25, coordinates.get_y() * 25, null, null);
     }
 
     @Override
@@ -66,13 +67,34 @@ public class Player implements GameObject, KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
-            case 37 -> moveLeft();
-            case 38 -> moveUp();
-            case 39 -> moveRight();
-            case 40 -> moveDown();
+            case 37 -> {
+                move_tracker = 1;
+                moveLeft();
+            }
+            case 38 -> {
+                move_tracker = 1;
+                moveUp();
+            }
+            case 39 -> {
+                move_tracker = 1;
+                moveRight();
+            }
+            case 40 -> {
+                move_tracker = 1;
+                moveDown();
+            }
             default -> System.out.println(e.getKeyCode());
         }
     }
+
+    public int getMove_tracker() {
+        return move_tracker;
+    }
+
+    public void setMove_tracker() {
+        move_tracker = 0;
+    }
+
 
     @Override
     public void keyReleased(KeyEvent e) { }

@@ -2,13 +2,10 @@ package com.elsys;
 
 import com.elsys.object.GameObject;
 import com.elsys.object.Player;
-import com.elsys.terrain.Terrain;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class Display{
     JFrame frame;
@@ -17,8 +14,9 @@ public class Display{
     String title;
     int width;
     int height;
-    public ArrayList<GameObject> objects = new ArrayList<>();
+
     Map map = new Map();
+    public ArrayList<GameObject> objects = new ArrayList<>();
 
     public Display(String title, int width, int height, Player player) {
         this.title = title;
@@ -53,12 +51,18 @@ public class Display{
 
             @Override
             public void paint(Graphics g){
-                for (Coordinates coordinates : map.map.keySet()) {
-                    Combination combination = map.map.get(coordinates);
-                    combination.terrain.paint((Graphics2D) g, coordinates);
+                for(int i = 0; i < map.getWidth(); i++){
+                    for(int j = 0; j < map.getHeight(); j++){
+                        map.getTerrains().get(i).get(j).paint((Graphics2D) g, new Coordinates(i , j));
+                    }
+                }
+                for(int i = 0; i < map.getWidth(); i++){
+                    for(int j = 0; j < map.getHeight(); j++){
+                        map.getObjects().get(i).get(j).paint((Graphics2D) g, new Coordinates(i , j));
+                    }
                 }
                 for(GameObject obj : objects){
-                    obj.paint((Graphics2D) g);
+                    obj.paint((Graphics2D) g, new Coordinates(0,0));
                 }
             }
         };
