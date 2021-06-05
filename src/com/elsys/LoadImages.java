@@ -6,27 +6,27 @@ import java.io.File;
 import java.io.IOException;
 
 public class LoadImages {
-    public static Image imgGrass;
-    public static Image imgWater;
-    public static Image imgStone;
-    public static Image imgPlayer;
-    public static Image imgTree;
+    public Image imgGrass;
+    public Image imgWater;
+    public Image imgStone;
+    public Image imgPlayer;
+    public Image imgTree;
 
-    public static Image imgStoneBrick;
-    public static Image imgStick;
+    public Image imgStoneBrick;
+    public Image imgStick;
 
     LoadImages() {
-        LoadImages.initGrass();
-        LoadImages.initWater();
-        LoadImages.initStone();
-        LoadImages.initPlayer();
-        LoadImages.initTree();
+        initGrass();
+        initWater();
+        initStone();
+        initPlayer();
+        initTree();
 
-        LoadImages.initStoneBrick();
-        LoadImages.initStick();
+        initStoneBrick();
+        initStick();
     }
 
-    public static void initGrass(){
+    public void initGrass(){
         try {
             imgGrass = ImageIO.read(new File("./src/img/grass.jpg"));
             imgGrass = imgGrass.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
@@ -35,7 +35,7 @@ public class LoadImages {
         }
     }
 
-    public static void initStone(){
+    public void initStone(){
         try {
             imgStone = ImageIO.read(new File("./src/img/stone.png"));
             imgStone = imgStone.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
@@ -44,7 +44,7 @@ public class LoadImages {
         }
     }
 
-    public static void initWater(){
+    public void initWater(){
         try {
             imgWater = ImageIO.read(new File("./src/img/water.jpg"));
             imgWater = imgWater.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
@@ -53,7 +53,7 @@ public class LoadImages {
         }
     }
 
-    public static void initPlayer(){
+    public void initPlayer(){
         try {
             imgPlayer = ImageIO.read(new File("./src/img/player.png"));
             imgPlayer = imgPlayer.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
@@ -62,7 +62,7 @@ public class LoadImages {
         }
     }
 
-    public static void initTree(){
+    public void initTree(){
         try {
             imgTree = ImageIO.read(new File("./src/img/tree.jpg"));
             imgTree = imgTree.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
@@ -71,7 +71,7 @@ public class LoadImages {
         }
     }
 
-    public static void initStoneBrick(){
+    public void initStoneBrick(){
         try {
             imgStoneBrick = ImageIO.read(new File("./src/img/stone-brick.png"));
             imgStoneBrick = imgStoneBrick.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
@@ -80,7 +80,7 @@ public class LoadImages {
         }
     }
 
-    public static void initStick(){
+    public void initStick(){
         try {
             imgStick = ImageIO.read(new File("./src/img/stick.png"));
             imgStick = imgStick.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);

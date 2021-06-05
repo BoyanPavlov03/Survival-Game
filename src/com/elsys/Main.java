@@ -11,14 +11,16 @@ public class Main {
 
     public static Display display;
 
+    public static LoadImages loadImages;
+
     public static void main(String[] args) {
         Player player = new Player(100,100, 100, 12, 12);
 
         Map map = new Map(player);
 
-        display = new Display("Survival-Game", pixel_size*pixel_size, pixel_size*pixel_size, map);
+        loadImages = new LoadImages();
 
-        new LoadImages();
+        display = new Display("Survival-Game", pixel_size*pixel_size, pixel_size*pixel_size, map);
 
         display.getCanvas().repaint();
 

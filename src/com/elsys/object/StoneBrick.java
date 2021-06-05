@@ -9,7 +9,7 @@ import java.awt.*;
 public class StoneBrick extends Item implements Stackable {
     @Override
     public void paint(Graphics2D g, Coordinates coordinates) {
-        g.drawImage(LoadImages.imgStoneBrick,coordinates.get_x() * Main.pixel_size, coordinates.get_y() * Main.pixel_size, null, null);
+        g.drawImage(Main.loadImages.imgStoneBrick,coordinates.get_x() * Main.pixel_size, coordinates.get_y() * Main.pixel_size, null, null);
     }
 
     @Override

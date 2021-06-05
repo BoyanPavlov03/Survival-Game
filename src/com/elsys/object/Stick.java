@@ -9,7 +9,7 @@ import java.awt.*;
 public class Stick extends Item implements Stackable {
     @Override
     public void paint(Graphics2D g, Coordinates coordinates) {
-        g.drawImage(LoadImages.imgStick,coordinates.get_x() * Main.pixel_size, coordinates.get_y() * Main.pixel_size, null, null);
+        g.drawImage(Main.loadImages.imgStick,coordinates.get_x() * Main.pixel_size, coordinates.get_y() * Main.pixel_size, null, null);
     }
 
     @Override

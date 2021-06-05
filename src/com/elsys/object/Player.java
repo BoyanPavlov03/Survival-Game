@@ -32,7 +32,7 @@ public class Player implements GameObject{
 
     @Override
     public void paint(Graphics2D g, Coordinates coordinates) {
-        g.drawImage(LoadImages.imgPlayer, this.coordinates.get_x() * Main.pixel_size, this.coordinates.get_y() * Main.pixel_size, null, null);
+        g.drawImage(Main.loadImages.imgPlayer, this.coordinates.get_x() * Main.pixel_size, this.coordinates.get_y() * Main.pixel_size, null, null);
     }
 
     @Override

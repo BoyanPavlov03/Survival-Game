@@ -14,6 +14,6 @@ public class WaterTerrain implements Terrain{
 
     @Override
     public void paint(Graphics2D g, Coordinates coordinates) {
-        g.drawImage(LoadImages.imgWater,coordinates.get_x() * Main.pixel_size, coordinates.get_y() * Main.pixel_size, null, null);
+        g.drawImage(Main.loadImages.imgWater,coordinates.get_x() * Main.pixel_size, coordinates.get_y() * Main.pixel_size, null, null);
     }
 }

@@ -10,7 +10,7 @@ public class Tree implements GameObject {
 
     @Override
     public void paint(Graphics2D g, Coordinates coordinates) {
-        g.drawImage(LoadImages.imgTree,coordinates.get_x() * Main.pixel_size, coordinates.get_y() * Main.pixel_size, null, null);
+        g.drawImage(Main.loadImages.imgTree,coordinates.get_x() * Main.pixel_size, coordinates.get_y() * Main.pixel_size, null, null);
 
     }
 

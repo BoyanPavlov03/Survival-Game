@@ -14,6 +14,6 @@ public class StoneTerrain implements Terrain {
 
     @Override
     public void paint(Graphics2D g, Coordinates coordinates) {
-        g.drawImage(LoadImages.imgStone,coordinates.get_x() * Main.pixel_size, coordinates.get_y() * Main.pixel_size, null, null);
+        g.drawImage(Main.loadImages.imgStone,coordinates.get_x() * Main.pixel_size, coordinates.get_y() * Main.pixel_size, null, null);
     }
 }
