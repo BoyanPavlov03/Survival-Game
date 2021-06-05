@@ -1,11 +1,7 @@
 package com.elsys;
 
-import com.elsys.object.GameObject;
-import com.elsys.object.Player;
-
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class Display{
     JFrame frame;
@@ -15,20 +11,16 @@ public class Display{
     int width;
     int height;
 
-    Map map = new Map();
-    public ArrayList<GameObject> objects = new ArrayList<>();
+    Map map;
 
-    public Display(String title, int width, int height, Player player) {
+    public Display(String title, int width, int height, Map map) {
         this.title = title;
         this.width = width;
         this.height = height;
 
         createDisplay();
-        frame.addKeyListener(player);
-    }
-
-    void addObject(GameObject obj){
-        objects.add(obj);
+        frame.addKeyListener(new MyKeyListener(map));
+        this.map = map;
     }
 
     public int getWidth() {
@@ -51,18 +43,11 @@ public class Display{
 
             @Override
             public void paint(Graphics g){
-                for(int i = 0; i < map.getWidth(); i++){
-                    for(int j = 0; j < map.getHeight(); j++){
-                        map.getTerrains().get(i).get(j).paint((Graphics2D) g, new Coordinates(i , j));
-                    }
+                for (java.util.Map.Entry<Coordinates, Combination> entry : map.getMap().entrySet()) {
+                    entry.getValue().getTerrain().paint((Graphics2D) g, entry.getKey());
                 }
-                for(int i = 0; i < map.getWidth(); i++){
-                    for(int j = 0; j < map.getHeight(); j++){
-                        map.getObjects().get(i).get(j).paint((Graphics2D) g, new Coordinates(i , j));
-                    }
-                }
-                for(GameObject obj : objects){
-                    obj.paint((Graphics2D) g, new Coordinates(0,0));
+                for (java.util.Map.Entry<Coordinates, Combination> entry : map.getMap().entrySet()) {
+                    entry.getValue().getObject().paint((Graphics2D) g, entry.getKey());
                 }
             }
         };
@@ -70,10 +55,6 @@ public class Display{
 
         frame.add(canvas);
         frame.pack();
-    }
-
-    public String getTitle() {
-        return title;
     }
 
     public Canvas getCanvas() {

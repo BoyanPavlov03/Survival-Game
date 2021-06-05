@@ -11,4 +11,12 @@ public class Combination {
         this.object = object;
         this.terrain = terrain;
     }
+
+    public GameObject getObject() {
+        return object;
+    }
+
+    public Terrain getTerrain() {
+        return terrain;
+    }
 }

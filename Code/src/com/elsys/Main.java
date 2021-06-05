@@ -7,13 +7,16 @@ import java.util.TimerTask;
 
 public class Main {
 
+    public static int pixel_size = 30;
+
     public static Display display;
 
     public static void main(String[] args) {
         Player player = new Player(100,100, 100, 12, 12);
 
-        display = new Display("Survival-Game", 625, 625, player);
-        display.addObject(player);
+        Map map = new Map(player);
+
+        display = new Display("Survival-Game", pixel_size*pixel_size, pixel_size*pixel_size, map);
 
         new LoadImages();
 
@@ -26,7 +29,7 @@ public class Main {
             public void run() {
                 if (player.getMove_tracker() == 1){
                     display.getCanvas().repaint();
-                    player.setMove_tracker();
+                    player.setMove_tracker(0);
                 }
             }
         }, 0,50);
