@@ -32,6 +32,10 @@ public class Player implements GameObject{
         this.inventory = new Inventory(20);
     }
 
+    public int getDamage() {
+        return damage;
+    }
+
     @Override
     public void paint(Graphics2D g, Coordinates coordinates) {
         g.clearRect(800, 0, 350, 500);

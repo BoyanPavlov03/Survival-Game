@@ -115,6 +115,20 @@ public class Map extends JPanel {
         return object instanceof EmptyObject;
     }
 
+    public void hit(Coordinates target){
+        GameObject object = map.get(target).getObject();
+        if(object instanceof Animal){
+            if(((Animal) object).take_dmg(player.getDamage())){
+                if(object instanceof Pig){
+                    player.inventory.add_item(new Steak());
+                }
+                else player.inventory.add_item(new Beef());
+                map.replace(target, new Combination(new EmptyObject(), new GrassTerrain()));
+                player.setMove_tracker(1);
+            }
+        }
+    }
+
     private Terrain generate_random_terrain() {
         return new Random().nextInt(3) == 1 ? new StoneTerrain() : new GrassTerrain();
     }
