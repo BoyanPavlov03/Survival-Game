@@ -39,24 +39,34 @@ public class Display{
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        canvas = new Canvas(){
+        canvas = new Canvas() {
 
             @Override
             public void paint(Graphics g){
-                int x = map.getPlayer().getCoordinates().get_x() - 5;
-                int y = map.getPlayer().getCoordinates().get_y() - 5;
-                for(int i = 0; i < Main.visible_board_blocks_count; i++){
-                    for(int j = 0; j < Main.visible_board_blocks_count; j++){
-                        Coordinates getCoordinates = new Coordinates(x + i, y + j);
-                        Coordinates paintCoordinates = new Coordinates(i, j);
-                        map.getMap().get(getCoordinates).getTerrain().paint((Graphics2D) g, paintCoordinates);
+                if (map.getPlayer().isDead()) {
+                    String msg = "YOU DIED";
+
+                    g.clearRect(0, 0, width, height);
+                    g.fillRect(0, 0, width, height);
+                    g.setFont(new Font("TimesRoman", Font.BOLD, 50));
+                    g.setColor(Color.RED);
+                    g.drawString(msg, width / 2 - msg.length() * 15, height / 2 - 100);
+                } else {
+                    int x = map.getPlayer().getCoordinates().get_x() - 5;
+                    int y = map.getPlayer().getCoordinates().get_y() - 5;
+                    for (int i = 0; i < Main.visible_board_blocks_count; i++) {
+                        for (int j = 0; j < Main.visible_board_blocks_count; j++) {
+                            Coordinates getCoordinates = new Coordinates(x + i, y + j);
+                            Coordinates paintCoordinates = new Coordinates(i, j);
+                            map.getMap().get(getCoordinates).getTerrain().paint((Graphics2D) g, paintCoordinates);
+                        }
                     }
-                }
-                for(int i = 0; i < Main.visible_board_blocks_count; i++){
-                    for(int j = 0; j < Main.visible_board_blocks_count; j++){
-                        Coordinates getCoordinates = new Coordinates(x + i, y + j);
-                        Coordinates paintCoordinates = new Coordinates(i, j);
-                        map.getMap().get(getCoordinates).getObject().paint((Graphics2D) g, paintCoordinates);
+                    for (int i = 0; i < Main.visible_board_blocks_count; i++) {
+                        for (int j = 0; j < Main.visible_board_blocks_count; j++) {
+                            Coordinates getCoordinates = new Coordinates(x + i, y + j);
+                            Coordinates paintCoordinates = new Coordinates(i, j);
+                            map.getMap().get(getCoordinates).getObject().paint((Graphics2D) g, paintCoordinates);
+                        }
                     }
                 }
             }
