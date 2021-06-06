@@ -7,9 +7,9 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Inventory {
-    static class InventoryItem {
-        Item item;
-        int count;
+    public static class InventoryItem {
+        public Item item;
+        public int count;
 
         public InventoryItem(Item item, int count) {
             this.item = item;
@@ -30,6 +30,7 @@ public class Inventory {
 
     public Inventory(int max_stack_size) {
         this.inventory = new ArrayList<>();
+        inventory.add(new InventoryItem(new BottleOfWater(), 1));
         this.max_stack_size = max_stack_size;
     }
 
@@ -66,7 +67,7 @@ public class Inventory {
     }
 
     public void drawInventoryItems(Graphics g) {
-        int counter = 1;
+        int counter = 0;
         g.drawString("Inventory :", 800 , 140);
         int x = 800;
         int y = 175;
@@ -80,12 +81,17 @@ public class Inventory {
 
         int blocks_count = Main.visible_board_blocks_count;
         for (int i = 0; i < blocks_count; i++) {
+            //g.setColor((i == selected) ? Color.red : Color.black);
             g.drawRect(i * Main.pixel_size, blocks_count * Main.pixel_size, Main.pixel_size, Main.pixel_size);
             if (inventory.size() > i) {
                 inventory.get(i).item.paint((Graphics2D) g, new Coordinates(i, blocks_count));
                 g.drawString(String.valueOf(inventory.get(i).count), i * Main.pixel_size, (blocks_count + 1) * Main.pixel_size);
             }
         }
+
+        g.setColor(Color.red);
+        g.drawRect(selected * Main.pixel_size, blocks_count * Main.pixel_size, Main.pixel_size, Main.pixel_size);
+        g.setColor(Color.black);
 
         // Vertical Line
         g.drawLine((blocks_count) * Main.pixel_size, 0, (blocks_count) * Main.pixel_size, (blocks_count + 1) * Main.pixel_size);

@@ -3,6 +3,7 @@ package com.elsys.object;
 import com.elsys.Coordinates;
 import com.elsys.LoadImages;
 import com.elsys.Main;
+import com.elsys.terrain.Terrain;
 
 import java.awt.*;
 
@@ -70,6 +71,13 @@ public class Player implements GameObject{
 
     public void gainHunger(int hunger){
         curr_hunger = Math.min(curr_hunger + hunger, max_hunger);
+    }
+
+    public void gainThirst() {
+        Item item = inventory.getInventory().get(inventory.getSelected()).item;
+        if (item instanceof BottleOfWater) {
+            curr_thirst = Math.min(curr_thirst + ((BottleOfWater) item).drink(), max_thirst);
+        }
     }
 
     public void eat() {
