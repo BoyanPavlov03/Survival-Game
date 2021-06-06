@@ -35,6 +35,10 @@ public class Player implements GameObject{
     }
 
     public int getDamage() {
+        Item item = inventory.inventory.get(inventory.selected).item;
+        if (item instanceof Axe) {
+            return ((Axe) item).damage + damage;
+        }
         return damage;
     }
 

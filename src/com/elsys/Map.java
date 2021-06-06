@@ -136,6 +136,12 @@ public class Map extends JPanel {
                 map.replace(target, new Combination(new EmptyObject(), new GrassTerrain()));
                 player.setMove_tracker(1);
             }
+        } else if (object instanceof Tree) {
+            if (player.inventory.getInventory().get(player.inventory.getSelected()).item instanceof Axe) {
+                player.inventory.add_item(new Apple());
+                map.replace(target, new Combination(new EmptyObject(), new GrassTerrain()));
+                player.setMove_tracker(1);
+            }
         }
     }
 
