@@ -103,8 +103,58 @@ public class Player implements GameObject{
         g.drawString("Health: " + curr_hp + "/" + max_hp, 800, 35);
         g.drawString("Hunger: " + curr_hunger + "/" + max_hunger, 800, 70);
         g.drawString("Thirst: " + curr_thirst + "/" + max_thirst, 800, 105);
+
         inventory.drawInventoryItems(g);
+        inventory.drawRecipes(g);
         g.drawImage(Main.loadImages.imgPlayer, coordinates.get_x() * Main.pixel_size, coordinates.get_y() * Main.pixel_size, null, null);
+    }
+
+    protected int get_sticks_count() {
+        return inventory.inventory.stream()
+                .filter(item -> item.item instanceof Stick)
+                .mapToInt(item -> item.count)
+                .reduce(0, Integer::sum);
+    }
+
+    protected int get_rocks_count() {
+        return inventory.inventory.stream()
+                .filter(item -> item.item instanceof StoneBrick)
+                .mapToInt(item -> item.count)
+                .reduce(0, Integer::sum);
+    }
+
+    protected int get_apples_count() {
+        return inventory.inventory.stream()
+                .filter(item -> item.item instanceof Apple)
+                .mapToInt(item -> item.count)
+                .reduce(0, Integer::sum);
+    }
+
+    public void craftAxe() {
+        int sticks_count = get_sticks_count();
+        int rock_count = get_rocks_count();
+
+        if (sticks_count >= 3 && rock_count >= 3 && inventory.inventory.size() < 11) {
+            inventory.add_item(new Axe());
+            for (Inventory.InventoryItem inventoryItem : inventory.inventory) {
+                if (inventoryItem.item instanceof Stick) {
+                    inventoryItem.count -= 3;
+                    if (inventoryItem.count <= 0) {
+                        inventory.inventory.remove(inventoryItem);
+                    }
+                    break;
+                }
+            }
+            for (Inventory.InventoryItem inventoryItem : inventory.inventory) {
+                if (inventoryItem.item instanceof StoneBrick) {
+                    inventoryItem.count -= 3;
+                    if (inventoryItem.count <= 0) {
+                        inventory.inventory.remove(inventoryItem);
+                    }
+                    break;
+                }
+            }
+        }
     }
 
     @Override

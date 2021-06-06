@@ -17,48 +17,44 @@ public class MyKeyListener implements KeyListener {
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_LEFT -> {
-                map.getPlayer().setMove_tracker(1);
                 map.moveLeft();
             }
             case KeyEvent.VK_UP -> {
-                map.getPlayer().setMove_tracker(1);
                 map.moveUp();
             }
             case KeyEvent.VK_RIGHT -> {
-                map.getPlayer().setMove_tracker(1);
                 map.moveRight();
             }
             case KeyEvent.VK_DOWN -> {
-                map.getPlayer().setMove_tracker(1);
                 map.moveDown();
             }
             case KeyEvent.VK_W -> {
                 map.hit(new Coordinates(map.getPlayer().getCoordinates().get_x(), map.getPlayer().getCoordinates().get_y() - 1));
+                return;
             }
             case KeyEvent.VK_A -> {
                 map.hit(new Coordinates(map.getPlayer().getCoordinates().get_x() - 1, map.getPlayer().getCoordinates().get_y()));
+                return;
             }
             case KeyEvent.VK_S -> {
                 map.hit(new Coordinates(map.getPlayer().getCoordinates().get_x(), map.getPlayer().getCoordinates().get_y() + 1));
+                return;
             }
             case KeyEvent.VK_D -> {
                 map.hit(new Coordinates(map.getPlayer().getCoordinates().get_x() + 1, map.getPlayer().getCoordinates().get_y()));
+                return;
             }
             case KeyEvent.VK_0 -> {
                 map.getPlayer().inventory.setSelected(0);
-                map.getPlayer().setMove_tracker(1);
             }
             case KeyEvent.VK_1 -> {
                 map.getPlayer().inventory.setSelected(1);
-                map.getPlayer().setMove_tracker(1);
             }
             case KeyEvent.VK_2 -> {
                 map.getPlayer().inventory.setSelected(2);
-                map.getPlayer().setMove_tracker(1);
             }
             case KeyEvent.VK_3 -> {
                 map.getPlayer().inventory.setSelected(3);
-                map.getPlayer().setMove_tracker(1);
             }
             case KeyEvent.VK_4 -> {
                 map.getPlayer().inventory.setSelected(4);
@@ -70,19 +66,15 @@ public class MyKeyListener implements KeyListener {
             }
             case KeyEvent.VK_6 -> {
                 map.getPlayer().inventory.setSelected(6);
-                map.getPlayer().setMove_tracker(1);
             }
             case KeyEvent.VK_7 -> {
                 map.getPlayer().inventory.setSelected(7);
-                map.getPlayer().setMove_tracker(1);
             }
             case KeyEvent.VK_8 -> {
                 map.getPlayer().inventory.setSelected(8);
-                map.getPlayer().setMove_tracker(1);
             }
             case KeyEvent.VK_9 -> {
                 map.getPlayer().inventory.setSelected(9);
-                map.getPlayer().setMove_tracker(1);
             }
             case KeyEvent.VK_E -> {
                 map.getPlayer().eat();
@@ -93,11 +85,15 @@ public class MyKeyListener implements KeyListener {
             }
             case KeyEvent.VK_G -> {
                 map.getPlayer().gainThirst();
-                map.getPlayer().setMove_tracker(1);
+            }
+            case KeyEvent.VK_T -> {
+                map.getPlayer().craftAxe();
             }
 
             default -> System.out.println(e.getKeyCode());
         }
+
+        map.getPlayer().setMove_tracker(1);
     }
 
     @Override

@@ -67,18 +67,6 @@ public class Inventory {
     }
 
     public void drawInventoryItems(Graphics g) {
-        int counter = 0;
-        g.drawString("Inventory :", 800 , 140);
-        int x = 800;
-        int y = 175;
-        for (InventoryItem inventoryItem : inventory) {
-            if (inventoryItem != null) {
-                g.drawString(counter + ". " + inventoryItem.item.type() + ": " + inventoryItem.count, x , y);
-                y += 35;
-                counter++;
-            }
-        }
-
         int blocks_count = Main.visible_board_blocks_count;
         for (int i = 0; i < blocks_count; i++) {
             //g.setColor((i == selected) ? Color.red : Color.black);
@@ -95,5 +83,16 @@ public class Inventory {
 
         // Vertical Line
         g.drawLine((blocks_count) * Main.pixel_size, 0, (blocks_count) * Main.pixel_size, (blocks_count + 1) * Main.pixel_size);
+
+        // Horizontal Line
+        int s = Main.visible_board_blocks_count * Main.pixel_size;
+        g.drawLine(s, 115, Main.display.getWidth(), 115);
+    }
+
+    public void drawRecipes(Graphics2D g) {
+        g.drawString("Recipes:", 800 , 150);
+        g.drawString("T. Axe: 3 Stick + 3 Rock", 800 , 185);
+        g.drawString("R. Rakia: 5 Apple + 5 Stick", 800 , 220);
+        g.drawString("               + 1 Water", 800 , 255);
     }
 }
