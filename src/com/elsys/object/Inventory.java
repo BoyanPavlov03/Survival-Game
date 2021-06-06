@@ -1,5 +1,6 @@
 package com.elsys.object;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Inventory {
@@ -43,5 +44,19 @@ public class Inventory {
             System.out.println(inventoryItem.item.type() + ": " + inventoryItem.count);
         }
         System.out.println();
+    }
+
+    public void drawInventoryItems(Graphics g) {
+        int counter = 1;
+        g.drawString("Inventory :", 800 , 140);
+        int x = 800;
+        int y = 175;
+        for (InventoryItem inventoryItem : inventory) {
+            if (inventoryItem != null) {
+                g.drawString(counter + ". " + inventoryItem.item.type() + ": " + inventoryItem.count, x , y);
+                y += 35;
+                counter++;
+            }
+        }
     }
 }

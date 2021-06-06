@@ -32,7 +32,13 @@ public class Player implements GameObject{
 
     @Override
     public void paint(Graphics2D g, Coordinates coordinates) {
-        g.drawImage(Main.loadImages.imgPlayer, this.coordinates.get_x() * Main.pixel_size, this.coordinates.get_y() * Main.pixel_size, null, null);
+        g.clearRect(800, 0, 350, 500);
+        g.setFont(new Font("TimesRoman", Font.BOLD, 25));
+        g.drawString("Health: " + curr_hp + "/" + max_hp, 800, 35);
+        g.drawString("Hunger: " + curr_hunger + "/" + max_hunger, 800, 70);
+        g.drawString("Thirst: " + curr_thirst + "/" + max_thirst, 800, 105);
+        inventory.drawInventoryItems(g);
+        g.drawImage(Main.loadImages.imgPlayer, coordinates.get_x() * Main.pixel_size, coordinates.get_y() * Main.pixel_size, null, null);
     }
 
     @Override

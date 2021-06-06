@@ -1,10 +1,7 @@
 package com.elsys;
 
 import com.elsys.object.*;
-import com.elsys.terrain.GrassTerrain;
-import com.elsys.terrain.StoneTerrain;
-import com.elsys.terrain.Terrain;
-import com.elsys.terrain.WaterTerrain;
+import com.elsys.terrain.*;
 
 import javax.swing.*;
 import java.util.Random;
@@ -13,8 +10,8 @@ import java.util.TreeMap;
 public class Map extends JPanel {
     TreeMap<Coordinates, Combination> map = new TreeMap<>();
 
-    int width = Main.pixel_size;
-    int height = Main.pixel_size;
+    int width = 61;
+    int height = 61;
     Player player;
 
     public Map(Player player) {
@@ -31,13 +28,27 @@ public class Map extends JPanel {
     }
 
     void generate_map() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 5; i++) {
             for (int j = 0; j < height; j++) {
+                map.put(new Coordinates(i, j), new Combination(new EmptyObject(), new VoidTerrain()));
+                map.put(new Coordinates(i + 56, j), new Combination(new EmptyObject(), new VoidTerrain()));
+            }
+        }
+
+        for (int i = 5; i < 56; i++) {
+            for(int j = 0; j < 5; j++) {
+                map.put(new Coordinates(i, j), new Combination(new EmptyObject(), new VoidTerrain()));
+                map.put(new Coordinates(i, j + 56), new Combination(new EmptyObject(), new VoidTerrain()));
+            }
+        }
+
+        for (int i = 5; i < 8; i++) {
+            for (int j = 5; j < height - 5; j++) {
                 map.put(new Coordinates(i, j), new Combination(new EmptyObject(), new WaterTerrain()));
             }
         }
-        for (int i = 3; i < width; i++) {
-            for (int j = 0; j < height; j++) {
+        for (int i = 8; i < width - 5; i++) {
+            for (int j = 5; j < height - 5; j++) {
                 Coordinates coordinates = new Coordinates(i, j);
                 map.put(coordinates, new Combination(new EmptyObject(), generate_random_terrain()));
             }
@@ -45,7 +56,7 @@ public class Map extends JPanel {
     }
 
     protected void moveDown() {
-        if((1 + player.getCoordinates().get_y()) * Main.pixel_size < Main.display.getHeight()){
+        if((1 + player.getCoordinates().get_y()) < 56){
             Coordinates oldCoordinates = new Coordinates(player.getCoordinates().get_x(), player.getCoordinates().get_y());
             Coordinates newCoordinates = new Coordinates(player.getCoordinates().get_x(), player.getCoordinates().get_y() + 1);
             if (intersectionHandler(newCoordinates)) {
@@ -55,7 +66,7 @@ public class Map extends JPanel {
         }
     }
     protected void moveUp(){
-        if(player.getCoordinates().get_y() - 1 >= 0){
+        if(player.getCoordinates().get_y() - 1 > 4){
             Coordinates oldCoordinates = new Coordinates(player.getCoordinates().get_x(), player.getCoordinates().get_y());
             Coordinates newCoordinates = new Coordinates(player.getCoordinates().get_x(), player.getCoordinates().get_y() - 1);
             if (intersectionHandler(newCoordinates)) {
@@ -65,7 +76,7 @@ public class Map extends JPanel {
         }
     }
     protected void moveLeft(){
-        if(player.getCoordinates().get_x() - 1 >= 0){
+        if(player.getCoordinates().get_x() - 1 > 4){
             Coordinates oldCoordinates = new Coordinates(player.getCoordinates().get_x(), player.getCoordinates().get_y());
             Coordinates newCoordinates = new Coordinates(player.getCoordinates().get_x() - 1, player.getCoordinates().get_y());
             if (intersectionHandler(newCoordinates)) {
@@ -75,7 +86,7 @@ public class Map extends JPanel {
         }
     }
     protected void moveRight(){
-        if((1 + player.getCoordinates().get_x()) * Main.pixel_size < Main.display.getWidth()){
+        if((1 + player.getCoordinates().get_x()) < 56){
             Coordinates oldCoordinates = new Coordinates(player.getCoordinates().get_x(), player.getCoordinates().get_y());
             Coordinates newCoordinates = new Coordinates(player.getCoordinates().get_x() + 1, player.getCoordinates().get_y());
             if (intersectionHandler(newCoordinates)) {

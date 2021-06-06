@@ -7,20 +7,20 @@ import java.util.TimerTask;
 
 public class Main {
 
-    public static int pixel_size = 30;
+    public static int pixel_size = 70;
 
     public static Display display;
 
     public static LoadImages loadImages;
 
     public static void main(String[] args) {
-        Player player = new Player(100,100, 100, 12, 12);
+        Player player = new Player(100,100, 100, 25, 25);
 
         Map map = new Map(player);
 
         loadImages = new LoadImages();
 
-        display = new Display("Survival-Game", pixel_size*pixel_size, pixel_size*pixel_size, map);
+        display = new Display("Survival-Game", 1200, 1200, map);
 
         display.getCanvas().repaint();
 

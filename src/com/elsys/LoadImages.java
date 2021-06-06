@@ -15,6 +15,8 @@ public class LoadImages {
     public Image imgStoneBrick;
     public Image imgStick;
 
+    public Image imgVoid;
+
     LoadImages() {
         initGrass();
         initWater();
@@ -24,6 +26,8 @@ public class LoadImages {
 
         initStoneBrick();
         initStick();
+
+        initVoid();
     }
 
     public void initGrass(){
@@ -84,6 +88,15 @@ public class LoadImages {
         try {
             imgStick = ImageIO.read(new File("./src/img/stick.png"));
             imgStick = imgStick.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void initVoid(){
+        try {
+            imgVoid = ImageIO.read(new File("./src/img/void.png"));
+            imgVoid = imgVoid.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
         } catch (IOException e) {
             e.printStackTrace();
         }
