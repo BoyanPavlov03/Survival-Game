@@ -13,12 +13,11 @@ public class Rakia extends Item implements Drinkable{
 
     @Override
     public String type() {
-        return null;
+        return "rakia";
     }
 
     @Override
     public int drink() {
-
-        return 10000;
+        return 100;
     }
 }

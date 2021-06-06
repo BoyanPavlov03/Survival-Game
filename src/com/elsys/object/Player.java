@@ -1,9 +1,7 @@
 package com.elsys.object;
 
 import com.elsys.Coordinates;
-import com.elsys.LoadImages;
 import com.elsys.Main;
-import com.elsys.terrain.Terrain;
 
 import java.awt.*;
 
@@ -81,6 +79,10 @@ public class Player implements GameObject{
         Item item = inventory.getInventory().get(inventory.getSelected()).item;
         if (item instanceof BottleOfWater) {
             curr_thirst = Math.min(curr_thirst + ((BottleOfWater) item).drink(), max_thirst);
+        } else if (item instanceof Rakia) {
+            Main.rakias_drank++;
+            curr_thirst = Math.min(curr_thirst + ((Rakia) item).drink(), max_thirst);
+            inventory.inventory.get(inventory.getSelected()).item = new BottleOfWater(false);
         }
     }
 

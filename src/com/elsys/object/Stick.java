@@ -1,7 +1,6 @@
 package com.elsys.object;
 
 import com.elsys.Coordinates;
-import com.elsys.LoadImages;
 import com.elsys.Main;
 
 import java.awt.*;

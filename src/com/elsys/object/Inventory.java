@@ -69,7 +69,6 @@ public class Inventory {
     public void drawInventoryItems(Graphics g) {
         int blocks_count = Main.visible_board_blocks_count;
         for (int i = 0; i < blocks_count; i++) {
-            //g.setColor((i == selected) ? Color.red : Color.black);
             g.drawRect(i * Main.pixel_size, blocks_count * Main.pixel_size, Main.pixel_size, Main.pixel_size);
             if (inventory.size() > i) {
                 inventory.get(i).item.paint((Graphics2D) g, new Coordinates(i, blocks_count));

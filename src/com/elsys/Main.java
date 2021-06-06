@@ -6,6 +6,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Main {
+    public static int rakias_drank = 0;
 
     public static int pixel_size = 70;
     public static int visible_board_blocks_count = 11;
@@ -47,6 +48,10 @@ public class Main {
                 epoch++;
 
                 if (player.isDead()) {
+                    display.getCanvas().repaint();
+                    timer.cancel();
+                }
+                if (rakias_drank == 5) {
                     display.getCanvas().repaint();
                     timer.cancel();
                 }

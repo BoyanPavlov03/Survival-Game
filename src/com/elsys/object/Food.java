@@ -1,9 +1,5 @@
 package com.elsys.object;
 
-import com.elsys.Coordinates;
-
-import java.awt.*;
-
 public abstract class Food extends Item implements Stackable{
     int hunger_restore;
     int health_restore;

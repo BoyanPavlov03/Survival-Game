@@ -11,6 +11,9 @@ public class BottleOfWater extends Item implements Drinkable{
     public BottleOfWater() {
         this.full = true;
     }
+    public BottleOfWater(boolean full) {
+        this.full = full;
+    }
 
     @Override
     public void paint(Graphics2D g, Coordinates coordinates) {

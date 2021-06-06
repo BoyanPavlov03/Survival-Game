@@ -18,6 +18,6 @@ public class Cow extends Animal{
 
     @Override
     public String type() {
-        return null;
+        return "cow";
     }
 }

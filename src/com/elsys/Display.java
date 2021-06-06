@@ -27,10 +27,6 @@ public class Display{
         return width;
     }
 
-    public int getHeight() {
-        return height;
-    }
-
     void createDisplay() {
         frame = new JFrame(title);
         frame.setSize(width, height);
@@ -43,7 +39,15 @@ public class Display{
 
             @Override
             public void paint(Graphics g){
-                if (map.getPlayer().isDead()) {
+                if (Main.rakias_drank == 5) {
+                    String msg = "YOU WIN";
+
+                    g.clearRect(0, 0, width, height);
+                    g.fillRect(0, 0, width, height);
+                    g.setFont(new Font("TimesRoman", Font.BOLD, 50));
+                    g.setColor(Color.GREEN);
+                    g.drawString(msg, width / 2 - msg.length() * 15, height / 2 - 100);
+                } else if (map.getPlayer().isDead()) {
                     String msg = "YOU DIED";
 
                     g.clearRect(0, 0, width, height);
