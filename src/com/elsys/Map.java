@@ -58,6 +58,16 @@ public class Map extends JPanel {
         }
     }
 
+    public void getWater(){
+        Terrain terrain = map.get(player.getCoordinates()).getTerrain();
+        if (terrain instanceof WaterTerrain) {
+            Item item = player.inventory.getInventory().get(player.inventory.getSelected()).item;
+            if (item instanceof BottleOfWater) {
+                ((BottleOfWater) item).full = true;
+            }
+        }
+    }
+
     protected void moveDown() {
         if((1 + player.getCoordinates().get_y()) < 56){
             Coordinates oldCoordinates = new Coordinates(player.getCoordinates().get_x(), player.getCoordinates().get_y());

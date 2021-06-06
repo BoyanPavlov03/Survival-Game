@@ -21,6 +21,12 @@ public class LoadImages {
 
     public Image imgVoid;
 
+    public Image imgFull;
+    public Image imgEmpty;
+    public Image imgRakia;
+    public Image imgApple;
+    public Image imgAxe;
+
     LoadImages() {
         initGrass();
         initWater();
@@ -36,6 +42,12 @@ public class LoadImages {
         initStick();
 
         initVoid();
+
+        initFull();
+        initEmpty();
+        initRakia();
+        initApple();
+        initAxe();
     }
 
     public void initGrass(){
@@ -137,6 +149,46 @@ public class LoadImages {
         try {
             imgSteak = ImageIO.read(new File("./src/img/steak.png"));
             imgSteak = imgSteak.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void initEmpty(){
+        try {
+            imgEmpty = ImageIO.read(new File("./src/img/empty.png"));
+            imgEmpty = imgEmpty.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void initFull(){
+        try {
+            imgFull = ImageIO.read(new File("./src/img/full.png"));
+            imgFull = imgFull.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void initRakia(){
+        try {
+            imgRakia = ImageIO.read(new File("./src/img/rakia.png"));
+            imgRakia = imgRakia.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void initApple(){
+        try {
+            imgApple = ImageIO.read(new File("./src/img/apple.png"));
+            imgApple = imgApple.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void initAxe(){
+        try {
+            imgAxe = ImageIO.read(new File("./src/img/axe.png"));
+            imgAxe = imgAxe.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
         } catch (IOException e) {
             e.printStackTrace();
         }
