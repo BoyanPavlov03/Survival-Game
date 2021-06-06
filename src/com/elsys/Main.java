@@ -27,12 +27,28 @@ public class Main {
 
         Timer timer = new Timer();
         timer.schedule(new TimerTask(){
+            int epoch = 1;
 
             @Override
             public void run() {
                 if (player.getMove_tracker() == 1){
                     display.getCanvas().repaint();
                     player.setMove_tracker(0);
+                }
+                if (epoch % 50 == 0) {
+                    player.getHungry(1);
+                    player.getThirsty(1);
+                    player.setMove_tracker(1);
+                }
+                if (epoch % 100 == 0) {
+                    player.getThirsty(1);
+                    epoch = 1;
+                }
+                epoch++;
+
+                if (player.isDead()) {
+                    display.getCanvas().repaint();
+                    timer.cancel();
                 }
             }
         }, 0,50);
