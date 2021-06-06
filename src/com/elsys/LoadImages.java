@@ -11,6 +11,8 @@ public class LoadImages {
     public Image imgStone;
     public Image imgPlayer;
     public Image imgTree;
+    public Image imgPig;
+    public Image imgCow;
 
     public Image imgStoneBrick;
     public Image imgStick;
@@ -23,6 +25,8 @@ public class LoadImages {
         initStone();
         initPlayer();
         initTree();
+        initCow();
+        initPig();
 
         initStoneBrick();
         initStick();
@@ -97,6 +101,22 @@ public class LoadImages {
         try {
             imgVoid = ImageIO.read(new File("./src/img/void.png"));
             imgVoid = imgVoid.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void initPig(){
+        try {
+            imgPig = ImageIO.read(new File("./src/img/pig.png"));
+            imgPig = imgPig.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void initCow(){
+        try {
+            imgCow = ImageIO.read(new File("./src/img/cow.png"));
+            imgCow = imgCow.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
         } catch (IOException e) {
             e.printStackTrace();
         }
