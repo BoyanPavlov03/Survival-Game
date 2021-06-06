@@ -18,6 +18,15 @@ public class Inventory {
     }
     protected ArrayList<InventoryItem> inventory;
     int max_stack_size;
+    int selected = 0;
+
+    public int getSelected() {
+        return selected;
+    }
+
+    public void setSelected(int selected) {
+        this.selected = selected;
+    }
 
     public Inventory(int max_stack_size) {
         this.inventory = new ArrayList<>();
@@ -26,6 +35,13 @@ public class Inventory {
 
     public ArrayList<InventoryItem> getInventory() {
         return inventory;
+    }
+
+    public void reduceCount(){
+        inventory.get(selected).count --;
+        if (inventory.get(selected).count == 0) {
+            inventory.remove(selected);
+        }
     }
 
     public void add_item(Item new_item) {

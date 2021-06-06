@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class Steak extends Food{
     public Steak() {
-        super(10);
+        super(10, 3);
     }
 
     @Override

@@ -64,6 +64,30 @@ public class Player implements GameObject{
         return dead;
     }
 
+    public void gainHealth(int health){
+        curr_hp = Math.min(curr_hp + health, max_hp);
+    }
+
+    public void gainHunger(int hunger){
+        curr_hunger = Math.min(curr_hunger + hunger, max_hunger);
+    }
+
+    public void eat() {
+        if (inventory.getInventory().size() > inventory.getSelected()) {
+            Item item = inventory.getInventory().get(inventory.getSelected()).item;
+            inventory.reduceCount();
+            if (item instanceof Food) {
+                gainHealth(((Food) item).health_restore);
+                gainHunger(((Food) item).hunger_restore);
+            }
+            else {
+                gainHealth(-2);
+                gainHunger(2);
+            }
+            setMove_tracker(1);
+        }
+    }
+
     @Override
     public void paint(Graphics2D g, Coordinates coordinates) {
         g.clearRect(800, 0, 350, 500);
@@ -79,7 +103,6 @@ public class Player implements GameObject{
     public String type() {
         return "player";
     }
-
 
     public int getMove_tracker() {
         return move_tracker;
