@@ -13,21 +13,27 @@ public class Player implements GameObject{
     int max_hunger;
     int curr_thirst;
     int max_thirst;
+    int damage;
     Coordinates coordinates;
 
     public Inventory inventory;
 
     int move_tracker = 0;
 
-    public Player(int max_hp, int max_hunger, int max_thirst, int x, int y) {
+    public Player(int max_hp, int max_hunger, int max_thirst, int x, int y, int damage) {
         this.curr_hp = max_hp;
         this.max_hp = max_hp;
         this.curr_hunger = max_hunger;
         this.max_hunger = max_hunger;
         this.curr_thirst = max_thirst;
         this.max_thirst = max_thirst;
+        this.damage = damage;
         this.coordinates = new Coordinates(x, y);
         this.inventory = new Inventory(20);
+    }
+
+    public int getDamage() {
+        return damage;
     }
 
     @Override

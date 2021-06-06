@@ -8,13 +8,14 @@ import java.util.TimerTask;
 public class Main {
 
     public static int pixel_size = 70;
+    public static int visible_board_blocks_count = 11;
 
     public static Display display;
 
     public static LoadImages loadImages;
 
     public static void main(String[] args) {
-        Player player = new Player(100,100, 100, 25, 25);
+        Player player = new Player(100,100, 100, 25, 25, 10);
 
         Map map = new Map(player);
 
