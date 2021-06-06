@@ -43,11 +43,21 @@ public class Display{
 
             @Override
             public void paint(Graphics g){
-                for (java.util.Map.Entry<Coordinates, Combination> entry : map.getMap().entrySet()) {
-                    entry.getValue().getTerrain().paint((Graphics2D) g, entry.getKey());
+                int x = map.getPlayer().getCoordinates().get_x() - 5;
+                int y = map.getPlayer().getCoordinates().get_y() - 5;
+                for(int i = 0; i < 11; i++){
+                    for(int j = 0; j < 11; j++){
+                        Coordinates getCoordinates = new Coordinates(x + i, y + j);
+                        Coordinates paintCoordinates = new Coordinates(i, j);
+                        map.getMap().get(getCoordinates).getTerrain().paint((Graphics2D) g, paintCoordinates);
+                    }
                 }
-                for (java.util.Map.Entry<Coordinates, Combination> entry : map.getMap().entrySet()) {
-                    entry.getValue().getObject().paint((Graphics2D) g, entry.getKey());
+                for(int i = 0; i < 11; i++){
+                    for(int j = 0; j < 11; j++){
+                        Coordinates getCoordinates = new Coordinates(x + i, y + j);
+                        Coordinates paintCoordinates = new Coordinates(i, j);
+                        map.getMap().get(getCoordinates).getObject().paint((Graphics2D) g, paintCoordinates);
+                    }
                 }
             }
         };

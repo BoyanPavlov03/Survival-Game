@@ -16,19 +16,19 @@ public class MyKeyListener implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_LEFT -> {
+            case 37 -> {
                 map.getPlayer().setMove_tracker(1);
                 map.moveLeft();
             }
-            case KeyEvent.VK_UP -> {
+            case 38 -> {
                 map.getPlayer().setMove_tracker(1);
                 map.moveUp();
             }
-            case KeyEvent.VK_RIGHT -> {
+            case 39 -> {
                 map.getPlayer().setMove_tracker(1);
                 map.moveRight();
             }
-            case KeyEvent.VK_DOWN -> {
+            case 40 -> {
                 map.getPlayer().setMove_tracker(1);
                 map.moveDown();
             }
