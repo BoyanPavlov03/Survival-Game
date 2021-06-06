@@ -1,5 +1,8 @@
 package com.elsys.object;
 
+import com.elsys.Coordinates;
+import com.elsys.Main;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -58,5 +61,17 @@ public class Inventory {
                 counter++;
             }
         }
+
+        int blocks_count = Main.visible_board_blocks_count;
+        for (int i = 0; i < blocks_count; i++) {
+            g.drawRect(i * Main.pixel_size, blocks_count * Main.pixel_size, Main.pixel_size, Main.pixel_size);
+            if (inventory.size() > i) {
+                inventory.get(i).item.paint((Graphics2D) g, new Coordinates(i, blocks_count));
+                g.drawString(String.valueOf(inventory.get(i).count), i * Main.pixel_size, (blocks_count + 1) * Main.pixel_size);
+            }
+        }
+
+        // Vertical Line
+        g.drawLine((blocks_count) * Main.pixel_size, 0, (blocks_count) * Main.pixel_size, (blocks_count + 1) * Main.pixel_size);
     }
 }

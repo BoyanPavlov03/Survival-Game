@@ -8,6 +8,7 @@ import java.util.TimerTask;
 public class Main {
 
     public static int pixel_size = 70;
+    public static int visible_board_blocks_count = 11;
 
     public static Display display;
 
