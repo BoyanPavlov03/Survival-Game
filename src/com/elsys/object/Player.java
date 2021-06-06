@@ -134,6 +134,13 @@ public class Player implements GameObject{
                 .reduce(0, Integer::sum);
     }
 
+    protected int get_waters_count() {
+        return inventory.inventory.stream()
+                .filter(item -> item.item instanceof BottleOfWater && ((BottleOfWater) item.item).full)
+                .mapToInt(item -> item.count)
+                .reduce(0, Integer::sum);
+    }
+
     public void craftAxe() {
         int sticks_count = get_sticks_count();
         int rock_count = get_rocks_count();
@@ -176,5 +183,39 @@ public class Player implements GameObject{
 
     public Coordinates getCoordinates() {
         return coordinates;
+    }
+
+    public void craftRakia() {
+        int sticks_count = get_sticks_count();
+        int apples_count = get_apples_count();
+        int water_count = get_waters_count();
+
+        if (sticks_count >= 5 && apples_count >= 5 && water_count >= 1 && inventory.inventory.size() < 11) {
+            inventory.add_item(new Rakia());
+            for (Inventory.InventoryItem inventoryItem : inventory.inventory) {
+                if (inventoryItem.item instanceof Stick) {
+                    inventoryItem.count -= 5;
+                    if (inventoryItem.count <= 0) {
+                        inventory.inventory.remove(inventoryItem);
+                    }
+                    break;
+                }
+            }
+            for (Inventory.InventoryItem inventoryItem : inventory.inventory) {
+                if (inventoryItem.item instanceof Apple) {
+                    inventoryItem.count -= 5;
+                    if (inventoryItem.count <= 0) {
+                        inventory.inventory.remove(inventoryItem);
+                    }
+                    break;
+                }
+            }
+            for (Inventory.InventoryItem inventoryItem : inventory.inventory) {
+                if (inventoryItem.item instanceof BottleOfWater && ((BottleOfWater) inventoryItem.item).full) {
+                    inventory.inventory.remove(inventoryItem);
+                    break;
+                }
+            }
+        }
     }
 }

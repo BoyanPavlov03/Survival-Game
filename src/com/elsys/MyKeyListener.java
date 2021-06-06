@@ -89,6 +89,9 @@ public class MyKeyListener implements KeyListener {
             case KeyEvent.VK_T -> {
                 map.getPlayer().craftAxe();
             }
+            case KeyEvent.VK_R -> {
+                map.getPlayer().craftRakia();
+            }
 
             default -> System.out.println(e.getKeyCode());
         }
