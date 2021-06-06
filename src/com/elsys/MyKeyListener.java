@@ -32,6 +32,18 @@ public class MyKeyListener implements KeyListener {
                 map.getPlayer().setMove_tracker(1);
                 map.moveDown();
             }
+            case KeyEvent.VK_W -> {
+                map.hit(new Coordinates(map.getPlayer().getCoordinates().get_x(), map.getPlayer().getCoordinates().get_y() - 1));
+            }
+            case KeyEvent.VK_A -> {
+                map.hit(new Coordinates(map.getPlayer().getCoordinates().get_x() - 1, map.getPlayer().getCoordinates().get_y()));
+            }
+            case KeyEvent.VK_S -> {
+                map.hit(new Coordinates(map.getPlayer().getCoordinates().get_x(), map.getPlayer().getCoordinates().get_y() + 1));
+            }
+            case KeyEvent.VK_D -> {
+                map.hit(new Coordinates(map.getPlayer().getCoordinates().get_x() + 1, map.getPlayer().getCoordinates().get_y()));
+            }
             default -> System.out.println(e.getKeyCode());
         }
     }

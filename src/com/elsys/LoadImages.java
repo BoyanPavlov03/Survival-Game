@@ -11,6 +11,10 @@ public class LoadImages {
     public Image imgStone;
     public Image imgPlayer;
     public Image imgTree;
+    public Image imgPig;
+    public Image imgCow;
+    public Image imgBeef;
+    public Image imgSteak;
 
     public Image imgStoneBrick;
     public Image imgStick;
@@ -23,6 +27,10 @@ public class LoadImages {
         initStone();
         initPlayer();
         initTree();
+        initCow();
+        initPig();
+        initBeef();
+        initSteak();
 
         initStoneBrick();
         initStick();
@@ -97,6 +105,38 @@ public class LoadImages {
         try {
             imgVoid = ImageIO.read(new File("./src/img/void.png"));
             imgVoid = imgVoid.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void initPig(){
+        try {
+            imgPig = ImageIO.read(new File("./src/img/pig.png"));
+            imgPig = imgPig.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void initCow(){
+        try {
+            imgCow = ImageIO.read(new File("./src/img/cow.png"));
+            imgCow = imgCow.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void initBeef(){
+        try {
+            imgBeef = ImageIO.read(new File("./src/img/beef.png"));
+            imgBeef = imgBeef.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void initSteak(){
+        try {
+            imgSteak = ImageIO.read(new File("./src/img/steak.png"));
+            imgSteak = imgSteak.getScaledInstance(Main.pixel_size, Main.pixel_size, Image.SCALE_FAST);
         } catch (IOException e) {
             e.printStackTrace();
         }

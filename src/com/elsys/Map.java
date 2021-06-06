@@ -19,6 +19,9 @@ public class Map extends JPanel {
         generate_random_tree();
         generate_random_stone_bricks();
         generate_random_sticks();
+        generate_random_pig();
+        generate_random_cow();
+
         addPlayer(player);
         this.player = player;
     }
@@ -112,6 +115,20 @@ public class Map extends JPanel {
         return object instanceof EmptyObject;
     }
 
+    public void hit(Coordinates target){
+        GameObject object = map.get(target).getObject();
+        if(object instanceof Animal){
+            if(((Animal) object).take_dmg(player.getDamage())){
+                if(object instanceof Pig){
+                    player.inventory.add_item(new Steak());
+                }
+                else player.inventory.add_item(new Beef());
+                map.replace(target, new Combination(new EmptyObject(), new GrassTerrain()));
+                player.setMove_tracker(1);
+            }
+        }
+    }
+
     private Terrain generate_random_terrain() {
         return new Random().nextInt(3) == 1 ? new StoneTerrain() : new GrassTerrain();
     }
@@ -153,6 +170,32 @@ public class Map extends JPanel {
                 if (map.get(coordinates).getTerrain() instanceof GrassTerrain){
                     if (new Random().nextInt(15) == 1 && !(map.get(coordinates).getObject() instanceof Tree)){
                         map.put(coordinates, new Combination(new Stick(),new GrassTerrain()));
+                    }
+                }
+            }
+        }
+    }
+
+    private void generate_random_pig() {
+        for (int i = 3; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                Coordinates coordinates = new Coordinates(i, j);
+                if (map.get(coordinates).getTerrain() instanceof GrassTerrain){
+                    if (new Random().nextInt(30) == 1 && !(map.get(coordinates).getObject() instanceof Tree) && !(map.get(coordinates).getObject() instanceof Stick)){
+                        map.put(coordinates, new Combination(new Pig(),new GrassTerrain()));
+                    }
+                }
+            }
+        }
+    }
+
+    private void generate_random_cow() {
+        for (int i = 3; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                Coordinates coordinates = new Coordinates(i, j);
+                if (map.get(coordinates).getTerrain() instanceof GrassTerrain){
+                    if (new Random().nextInt(30) == 1 && !(map.get(coordinates).getObject() instanceof Tree) && !(map.get(coordinates).getObject() instanceof Stick) && !(map.get(coordinates).getObject() instanceof Pig)){
+                        map.put(coordinates, new Combination(new Cow(),new GrassTerrain()));
                     }
                 }
             }
